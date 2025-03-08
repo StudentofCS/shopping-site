@@ -131,9 +131,9 @@ def show_shopping_cart():
         # Add total to the order tally
         melon.total_price += order_tally
 
-        print(melon.common_name)
-    print(f"this is melons in cart {melons_in_cart}")
-    print(f"this is session['cart'] {session['cart']}")
+    #     print(melon.common_name)
+    # print(f"this is melons in cart {melons_in_cart}")
+    # print(f"this is session['cart'] {session['cart']}")
 
 
     return render_template("cart.html", melons_in_cart=melons_in_cart,
