@@ -116,25 +116,31 @@ def show_shopping_cart():
     melons_in_cart = []
     order_tally = 0
 
-    if 'cart' not in session:
-        session['cart'] = {}
+    # if 'cart' not in session:
+    #     session['cart'] = {}
 
-    for melon_id in session['cart']:
+    # From solution which is sleeker
+    cart = session.get('cart', {})
+
+    # for melon_id in session['cart']:
+    for melon_id, quantity in cart.items():
         # Get melon ID and add quantity and total price
         melon = melons.get_by_id(melon_id)
-        melon.quantity = session['cart'][melon_id]
-        melon.total_price = melon.quantity * melon.price
+        # melon.quantity = session['cart'][melon_id]
+        melon.quantity = quantity
+        melon.total_price = quantity * melon.price
 
         # Add the melon to the melons cart
         melons_in_cart.append(melon)
 
         # Add total to the order tally
-        melon.total_price += order_tally
+        order_tally += melon.total_price
+        print(f"this is the total price: {order_tally}")
 
     #     print(melon.common_name)
     # print(f"this is melons in cart {melons_in_cart}")
     # print(f"this is session['cart'] {session['cart']}")
-
+    
 
     return render_template("cart.html", melons_in_cart=melons_in_cart,
                            tally=order_tally)
