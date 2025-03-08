@@ -19,8 +19,8 @@
         <tr>
             <td>{{ melon.common_name }}</td>
             <td>{{ melon.quantity }}</td>
-            <td>{{ "${:,.2f}".format(melon.price) }}</td>
-            <td>{{ "${:,.2f}".format(melon.total_price) }}</td>
+            <td>{{ melon.price_str() }}</td>
+            <td>{{ melon.total_price_str() }}</td>
         </tr>
         {% endfor %}
         </tbody>
